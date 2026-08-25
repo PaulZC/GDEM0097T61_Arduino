@@ -56,10 +56,30 @@ void loop() {
     delay(2000); //Delay for 2s. 
 #endif
 
+#if 1 //GoodDisplay's original Partial update demostration.
+  //Partial update demo support displaying a clock at 5 locations with 00:00.  If you need to perform partial update more than 5 locations, please use the feature of using partial update at the full screen demo.
+  //After 5 partial updatees, implement a full screen update to clear the ghosting caused by partial updatees.
+  //////////////////////Partial update time demo/////////////////////////////////////
+      EPD_HW_Init(); //Electronic paper initialization. 
+      EPD_SetRAMValue_BaseMap(gImage_basemap); //Please do not delete the background color function, otherwise it will cause unstable display during partial update.
+      for(i=0;i<6;i++)
+      EPD_Dis_Part_Time(32,56+24*0,Num[i],         //x-A,y-A,DATA-A
+                        32,56+24*1,Num[0],         //x-B,y-B,DATA-B
+                        32,56+24*2,gImage_numdot, //x-C,y-C,DATA-C
+                        32,56+24*3,Num[0],        //x-D,y-D,DATA-D
+                        32,56+24*4,Num[1],24,32); //x-E,y-E,DATA-E,Resolution 24*32
+          
+
+      EPD_DeepSleep();  //Enter the sleep mode and please do not delete it, otherwise it will reduce the lifespan of the screen.
+      delay(2000); //Delay for 2s.
+      EPD_HW_Init(); //Full screen update initialization.
+      EPD_WhiteScreen_White(); //Clear screen function.
+      EPD_DeepSleep(); //Enter the sleep mode and please do not delete it, otherwise it will reduce the lifespan of the screen.
+      delay(2000); //Delay for 2s.
+#endif  
+  
 #if 1 //Partial update demostration.
-    //Partial update demo support displaying a clock at 5 locations with 00:00.  If you need to perform partial update more than 5 locations,
-    //please use the feature of using partial update at the full screen demo.
-    //After 5 partial updates, implement a full screen update to clear the ghosting caused by partial updates.
+    //Partial update demo support displaying a blinking clock at 5 locations with 00:00.
     //Paul's note: this only works because all five digits are overwritten simultaneously
     //////////////////////Partial update time demo/////////////////////////////////////
     EPD_HW_Init(); //Electronic paper initialization. 

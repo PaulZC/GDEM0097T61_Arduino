@@ -54,10 +54,8 @@ Like I say, it only works because all five digits are written each time.
 If you change their demonstration to the following, you can make the time blink off and on. But, again, it only works because all five digits are written each time.
 
 ```
-#if 0 //Partial update demostration.
-    //Partial update demo support displaying a clock at 5 locations with 00:00.  If you need to perform partial update more than 5 locations,
-    //please use the feature of using partial update at the full screen demo.
-    //After 5 partial updates, implement a full screen update to clear the ghosting caused by partial updates.
+#if 1 //Partial update demostration.
+    //Partial update demo support displaying a blinking clock at 5 locations with 00:00.
     //Paul's note: this only works because all five digits are overwritten simultaneously
     //////////////////////Partial update time demo/////////////////////////////////////
     EPD_HW_Init(); //Electronic paper initialization. 
@@ -81,7 +79,7 @@ If you change their demonstration to the following, you can make the time blink 
 If you change the demo so that it 'chases' the digits 6 to 0, from right to left across the display, it works successfully if you overwrite all seven positions with spaces before adding the new digit:
 
 ```
-#if 0 //Paul's partial update demostration.
+#if 1 //Paul's partial update demostration.
     // Ping-pong is enabled by default and causes problems.
     // We can only appear to shift a digit along by one if
     // we fully erase the space occupied by all digits and
@@ -125,7 +123,7 @@ If you change the demo so that it 'chases' the digits 6 to 0, from right to left
 If you change the demo so it erases only the single previous digit, you get some very interesting weirdness!
 
 ```
-#if 0 //Paul's partial update demostration.
+#if 1 //Paul's partial update demostration.
     // Ping-pong is enabled by default and causes problems.
     // We can only appear to shift a digit along by one if
     // we fully erase the space occupied by all digits and
