@@ -53,6 +53,8 @@ Like I say, it only works because all five digits are written each time.
 
 If you change their demonstration to the following, you can make the time blink off and on. But, again, it only works because all five digits are written each time.
 
+![Blink time demo](./img/blink_time.gif "Blink time demo")
+
 ```
 #if 1 //Partial update demostration.
     //Partial update demo support displaying a blinking clock at 5 locations with 00:00.
@@ -76,7 +78,9 @@ If you change their demonstration to the following, you can make the time blink 
 #endif  
 ```
 
-If you change the demo so that it 'chases' the digits 6 to 0, from right to left across the display, it works successfully if you overwrite all seven positions with spaces before adding the new digit:
+If you change the demo so that it 'scrolls' the digits 6 to 0, from right to left across the display, it works successfully if you overwrite all seven positions with spaces before adding the new digit:
+
+![Scroll numbers demo - full erase](./img/scroll_numbers_full_erase.gif "Scroll numbers demo - full erase")
 
 ```
 #if 1 //Paul's partial update demostration.
@@ -122,6 +126,8 @@ If you change the demo so that it 'chases' the digits 6 to 0, from right to left
 
 If you change the demo so it erases only the single previous digit, you get some very interesting weirdness!
 
+![Scroll numbers demo - single erase](./img/scroll_numbers_single_erase.gif "Scroll numbers demo - single erase")
+
 ```
 #if 1 //Paul's partial update demostration.
     // Ping-pong is enabled by default and causes problems.
@@ -165,6 +171,8 @@ If you change the demo so it erases only the single previous digit, you get some
 ```
 
 The solution for the single digit erase is to perform each partial update twice, then both RAM banks receive the update:
+
+![Scroll numbers demo - single erase, double write](./img/scroll_numbers_single_erase_double_write.gif "Scroll numbers demo - single erase, double write")
 
 ```
 #if 1 //Paul's partial update demostration.
