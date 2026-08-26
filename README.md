@@ -21,7 +21,7 @@ The `1` in bit `F[6]` indicates PingPong for Display Mode 2 - RAM Ping-Pong - is
 
 This means that after each partial update, the RAM bank is automatically switched to the alternate for the next write and display cycle. This is to speed up updating the display, allowing the alternate bank to be updated while the display is busy with the other. But this causes some challenges...
 
-The original GoodDisplay partial update "Time" demo only works because all five time digits (```HH:MM```) are updated each time. If you try to selectively change a single digit, by overwriting it with a space then a new digit, you will see some very interesting effects.
+The original GoodDisplay partial update "Time" demo only works because all five time digits (```HH:MM```) are updated each time. If you try to 'move' a digit, by overwriting it with a single space and then add a new digit in a new position, you will see some very interesting effects.
 
 This is GoodDisplay's original demo:
 
