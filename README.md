@@ -25,6 +25,8 @@ The original GoodDisplay partial update "Time" demo only works because all five 
 
 This is GoodDisplay's original demo:
 
+![GoodDisplay original demo](./img/original_demo.gif "GoodDisplay original demo")
+
 ```
   #if 1 //Partial update demostration.
   //Partial update demo support displaying a clock at 5 locations with 00:00.  If you need to perform partial update more than 5 locations, please use the feature of using partial update at the full screen demo.
