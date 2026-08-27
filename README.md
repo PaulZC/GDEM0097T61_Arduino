@@ -179,9 +179,9 @@ The solution for the single digit erase is to perform each partial update twice,
 ```
 #if 1 //Paul's partial update demostration.
     // Ping-pong is enabled by default and causes problems.
-    // If we want to only erase the previous digit,
-    // before adding the new digit, we need to write twice
-    // so both halves of the RAM are updated each time.
+    // If we want to only erase the previous digit when
+    // adding the new digit, we can write and update twice
+    // so both halves of the RAM are updated.
     EPD_HW_Init(); //Electronic paper initialization. 
     EPD_SetRAMValue_BaseMap(gImage_basemap); //Please do not delete the background color function, otherwise it will cause unstable display during partial update.
     for(j=0;j<3;j++)
@@ -211,6 +211,48 @@ The solution for the single digit erase is to perform each partial update twice,
 
     // Erase last digit
     EPD_Dis_Part_RAM(32,32+(24*6),gImage_space,24,32); //Resolution 24*32
+    EPD_Part_Update();
+    
+    EPD_DeepSleep();  //Enter the sleep mode and please do not delete it, otherwise it will reduce the lifespan of the screen.
+    delay(2000); //Delay for 2s.
+    
+    EPD_HW_Init(); //Full screen update initialization.
+    EPD_WhiteScreen_White(); //Clear screen function.
+    EPD_DeepSleep(); //Enter the sleep mode and please do not delete it, otherwise it will reduce the lifespan of the screen.
+    delay(2000); //Delay for 2s.
+#endif  
+```
+
+Or, just for giggles and just to prove it works, you can instead erase the previous previous digit!
+
+![Scroll numbers demo - erase previous previous digit](./img/scroll_numbers_erase_previous_previous.gif "Scroll numbers demo - erase previous previous digit")
+
+```
+#if 1 //Paul's partial update demostration.
+    // Ping-pong is enabled by default and causes problems.
+    // Just for giggles and just to prove it works:
+    // we can instead do a single write and erase the
+    // previous previous digit when adding the new digit
+    EPD_HW_Init(); //Electronic paper initialization. 
+    EPD_SetRAMValue_BaseMap(gImage_basemap); //Please do not delete the background color function, otherwise it will cause unstable display during partial update.
+    for(j=0;j<3;j++)
+    {
+      for(i=0;i<7;i++)
+      {
+        if ((i + j*7) >= 2) // If we have printed at least 2 digits
+        {
+          k = (i + 5) % 7; // Subtract 2 from i (unsigned char)
+          EPD_Dis_Part_RAM(32,32+(24*k),gImage_space,24,32); // Erase previous previous digit
+        }
+
+        EPD_Dis_Part_RAM(32,32+(24*i),Num[6-i],24,32); // Add new digit
+
+        EPD_Part_Update();
+      }
+    }
+
+    k = (i + 5) % 7; // Subtract 2 from i (unsigned char)
+    EPD_Dis_Part_RAM(32,32+(24*k),gImage_space,24,32); // Erase previous previous digit
     EPD_Part_Update();
     
     EPD_DeepSleep();  //Enter the sleep mode and please do not delete it, otherwise it will reduce the lifespan of the screen.
